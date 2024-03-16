@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { father } from "./components/father";
+import { Padre } from "./components/Padre";
 import { NavBar } from "./components/NavBar";
 import { ItemListContainer } from "./components/ItemListContainer";
 
@@ -9,7 +9,7 @@ function App() {
     <>
       <NavBar />
       <ItemListContainer greeting={"Envios a todo Chile"} />
-      <father />
+      <Padre />
     </>
   );
 }

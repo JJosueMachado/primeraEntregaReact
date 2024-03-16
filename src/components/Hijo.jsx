@@ -1,4 +1,4 @@
-export const child = (props) => {
+export const Hijo = (props) => {
   return (
     <>
       <h1>{props.nombre}</h1>
