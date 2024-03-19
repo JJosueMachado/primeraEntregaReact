@@ -7,3 +7,16 @@ export const Hijo = (props) => {
     </>
   );
 };
+
+export const Hijo2 = ({ pokemon, tipo }) => {
+  return (
+    <>
+      <h1>{pokemon}</h1>
+      <h2>{tipo}</h2>
+    </>
+  );
+};
+
+export const ChildCallback = ({ property }) => {
+  return <button onClick={property}>Presiona aquí</button>;
+};
