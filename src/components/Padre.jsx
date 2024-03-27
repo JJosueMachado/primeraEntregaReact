@@ -16,5 +16,3 @@ export const PropsCallback = () => {
 
   return <ChildCallback property={handleClick} />;
 };
-//HOOKS (Hay que importalos de react):
-//useState:
