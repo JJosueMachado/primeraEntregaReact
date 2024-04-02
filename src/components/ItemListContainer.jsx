@@ -23,7 +23,7 @@ export const ItemListContainer = () => {
     });
   }, [id]);
   return (
-    <Container className="card">
+    <Container>
       <ItemList products={products} />
     </Container>
   );
