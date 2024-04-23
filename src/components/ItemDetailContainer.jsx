@@ -19,7 +19,7 @@ export const ItemDetailContainer = () => {
   return (
     <Container className="mt-4 ">
       <h1>{product.title}</h1>
-      <img src={product.pictureUrl} alt="velas&spa" />
+      <img src={product.image} alt="velas&spa" />
       <h2>{product.description}</h2>
     </Container>
   );

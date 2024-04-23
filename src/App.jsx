@@ -5,10 +5,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NavBar } from "./components/NavBar";
 import { ItemDetailContainer } from "./components/ItemDetailContainer";
 import { ItemListContainer } from "./components/ItemListContainer";
+import { Provider } from "./contexts/CartContext";
 
 function App() {
   return (
-    <>
+    <Provider>
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -17,7 +18,7 @@ function App() {
           <Route path="/item/:id" element={<ItemDetailContainer />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </Provider>
   );
 }
 

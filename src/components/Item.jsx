@@ -10,7 +10,7 @@ export const Item = ({ product }) => {
   return (
     <div className="col-md-4">
       <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={product.pictureUrl} />
+        <Card.Img variant="top" height="250" src={product.image} />
         <Card.Body>
           <Card.Title>{product.title}</Card.Title>
           <Card.Text>{`CLP ${product.price}`}</Card.Text>
