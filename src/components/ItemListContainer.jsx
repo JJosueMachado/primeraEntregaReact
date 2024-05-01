@@ -18,7 +18,16 @@ export const ItemListContainer = () => {
   useEffect(() => {
     const db = getFirestore();
 
-    const refCollection = collection(db, "items");
+    let refCollection;
+
+    if (!id) {
+      refCollection = collection(db, "Items");
+    } else {
+      refCollection = query(
+        collection(db, "Items"),
+        where("categoryId", "==", id)
+      );
+    }
 
     getDocs(refCollection).then((snapshot) => {
       setProducts(

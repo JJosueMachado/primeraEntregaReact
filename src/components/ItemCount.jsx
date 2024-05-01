@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
-const ItemCount = ({ stock, initial, onAdd }) => {
-  const [count, setCount] = useState(initial);
+/* const ItemQuantity = ({ stock, initial, onAdd }) => {
+  const [quantity, setQuantity] = useState(initial);
 
   const sumar = () => {
-    if (stock > count) {
-      setCount(count + 1);
+    if (stock > quantity) {
+      setQuantity(quantity + 1);
     }
   };
 
   const restar = () => {
-    if (count > 1) {
-      setCount(count - 1);
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
     }
   };
   const AgregarCantidad = () => {
-    onAdd(count);
+    onAdd(quantity);
   };
 
   return (
@@ -25,7 +25,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
           -
         </button>
 
-        <label>{count}</label>
+        <label>{quantity}</label>
 
         <button className="Boton1" onClick={sumar}>
           +
@@ -38,4 +38,41 @@ const ItemCount = ({ stock, initial, onAdd }) => {
   );
 };
 
-export default ItemCount;
+export default ItemQuantity; */
+
+export const ItemCount = ({ stock, onAdd }) => {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleIncrease = () => {
+    if (stock > quantity) setQuantity((prev) => prev + 1);
+  };
+
+  const handleDecrease = () => {
+    if (quantity > 1) setQuantity((prev) => prev - 1);
+  };
+
+  const handleAdd = () => {
+    onAdd(quantity);
+    setQuantity(1);
+  };
+  return (
+    <div className="d-flex">
+      <div
+        style={{ padding: "0 10px", color: "red", fontWeight: 900 }}
+        onClick={handleDecrease}
+      >
+        -
+      </div>
+      <input type="number" value={quantity} readOnly />
+      <div
+        style={{ padding: "0 10px", color: "red", fontWeight: 900 }}
+        onClick={handleIncrease}
+      >
+        +
+      </div>
+      <button type="button" onClick={handleAdd}>
+        aAgregar al carrito
+      </button>
+    </div>
+  );
+};

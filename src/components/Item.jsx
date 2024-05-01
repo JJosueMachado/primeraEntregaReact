@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import ItemCount from "./ItemCount";
+// import ItemCount from "./ItemCount";
 
 export const Item = ({ product }) => {
   const onAdd = (cantidad) => {
@@ -17,7 +17,7 @@ export const Item = ({ product }) => {
           <Link to={`/item/${product.id}`}>
             <Button variant="primary">Ver mas</Button>
           </Link>
-          <ItemCount stock={10} initial={1} onAdd={onAdd} />
+          {/* <ItemCount stock={10} initial={1} onAdd={onAdd} /> */}
         </Card.Body>
       </Card>
     </div>

@@ -13,16 +13,16 @@ export const NavBar = () => {
             Velas&Spa
           </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link to="/category/Velas" as={NavLink}>
+            <Nav.Link to="/category/velas" as={NavLink}>
               Velas
             </Nav.Link>
-            <Nav.Link to="/category/Aceites" as={NavLink}>
+            <Nav.Link to="/category/aceites" as={NavLink}>
               Aceites
             </Nav.Link>
-            <Nav.Link to="/category/Fragancias" as={NavLink}>
+            <Nav.Link to="/category/fragancias" as={NavLink}>
               Fragancias
             </Nav.Link>
-            <Nav.Link to="/category/Equipos" as={NavLink}>
+            <Nav.Link to="/category/equipos" as={NavLink}>
               Equipos
             </Nav.Link>
           </Nav>
