@@ -1,44 +1,6 @@
 import React, { useState } from "react";
-
-/* const ItemQuantity = ({ stock, initial, onAdd }) => {
-  const [quantity, setQuantity] = useState(initial);
-
-  const sumar = () => {
-    if (stock > quantity) {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  const restar = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-  const AgregarCantidad = () => {
-    onAdd(quantity);
-  };
-
-  return (
-    <>
-      <div className="containerButton">
-        <button className="Boton1" onClick={restar}>
-          -
-        </button>
-
-        <label>{quantity}</label>
-
-        <button className="Boton1" onClick={sumar}>
-          +
-        </button>
-      </div>
-      <button className="Agregar" onClick={AgregarCantidad}>
-        Agregar al carrito
-      </button>
-    </>
-  );
-};
-
-export default ItemQuantity; */
+import Button from "react-bootstrap/Button";
+import swal from "sweetalert";
 
 export const ItemCount = ({ stock, onAdd }) => {
   const [quantity, setQuantity] = useState(1);
@@ -54,25 +16,50 @@ export const ItemCount = ({ stock, onAdd }) => {
   const handleAdd = () => {
     onAdd(quantity);
     setQuantity(1);
+    swal({
+      title: "En hora buena!",
+      text: `Se ha agreado ${quantity} producto al carrito`,
+      icon: "success",
+      button: false,
+      timer: 2100,
+    });
   };
   return (
-    <div className="d-flex">
-      <div
-        style={{ padding: "0 10px", color: "red", fontWeight: 900 }}
-        onClick={handleDecrease}
-      >
-        -
+    <>
+      <div className="d-flex justify-content-center align-items-center">
+        <Button
+          className=" countButton"
+          onClick={handleDecrease}
+          style={{ padding: "0 15px", color: "black", fontWeight: 900 }}
+        >
+          -
+        </Button>
+
+        <input
+          type="number"
+          value={quantity}
+          style={{
+            padding: "0 20px",
+            color: "black",
+            fontWeight: 700,
+            textAlign: "center",
+          }}
+          readOnly
+        />
+
+        <Button
+          className=" countButton"
+          onClick={handleIncrease}
+          style={{ padding: "0 15px", color: "black", fontWeight: 900 }}
+        >
+          +
+        </Button>
       </div>
-      <input type="number" value={quantity} readOnly />
-      <div
-        style={{ padding: "0 10px", color: "red", fontWeight: 900 }}
-        onClick={handleIncrease}
-      >
-        +
+      <div className="mt-3">
+        <Button className="addButton" onClick={handleAdd}>
+          Agregar al carrito
+        </Button>
       </div>
-      <button type="button" onClick={handleAdd}>
-        aAgregar al carrito
-      </button>
-    </div>
+    </>
   );
 };

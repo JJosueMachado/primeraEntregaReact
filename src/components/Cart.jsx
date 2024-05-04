@@ -1,7 +1,13 @@
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import { Trash3 } from "react-bootstrap-icons";
 import { useContext, useState } from "react";
-import { CartContext } from "../contexts/CartContext";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import swal from "sweetalert";
+
+import { CartContext } from "../contexts/CartContext";
+
 const initialValues = {
   name: "",
   phone: "",
@@ -37,7 +43,13 @@ export const Cart = () => {
     addDoc(orderCollection, order)
       .then(({ id }) => {
         if (id) {
-          alert("Su orden: " + id + " ha sido completada!");
+          swal({
+            title: `Su orden de compra es ${id} `,
+            text: "Su compra ha sido completada exitosamente",
+            icon: "success",
+            button: false,
+            timer: 3500,
+          });
         }
       })
       .finally(() => {
@@ -45,25 +57,67 @@ export const Cart = () => {
         setValues(initialValues);
       });
   };
-  const handleClear = (id) => clear();
+  const handleClear = () => {
+    swal({
+      title: "¿Estás seguro?",
+      text: "Una vez eliminado, no podrás recuperar este carrito de compras!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        clear();
+        swal("Tu carrito de compras ha sido eliminado!", {
+          icon: "success",
+        });
+      }
+    });
+  };
   const handleRemove = (id) => removeItem(id);
   return (
     <Container className="mt-4">
-      <h1>Productos:</h1>
-      {items.map((i) => {
-        return (
-          <ul key={i.title}>
-            <li>Prod:{i.title}</li>
-            <li>Cant:{i.quantity}</li>
-            <li>$ {i.price}</li>
-            <li onClick={() => handleRemove(i.id)}>X</li>
-          </ul>
-        );
-      })}
-      <div>Total: {total()}</div>
-      <button onClick={handleClear}>Vaciar</button>
+      <Card className="text-center">
+        <Card.Header>
+          <h3>Productos seleccionados: </h3>
+        </Card.Header>
+        <Card.Body>
+          <Card.Text className="d-flex">
+            {items.map((i) => {
+              return (
+                <>
+                  <ul className="cartList " key={i.title}>
+                    <li>
+                      <img src={i.image} alt={i.title} height="100" />
+                    </li>
+                    <li>{i.title}</li>
+                    <li>Cant: {i.quantity}</li>
+                    <li> {i.price} CPL</li>
+                    <li onClick={() => handleRemove(i.id)}>X</li>
+                    <li>
+                      <button
+                        onClick={() => handleRemove(i.id)}
+                        className="buttonRemoveItem"
+                      >
+                        Eliminar
+                      </button>
+                    </li>
+                  </ul>
+                </>
+              );
+            })}
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer className="text-muted">
+          <div className=" mt-3 mb-4">
+            <h2>Total: {total()} CLP</h2>
+          </div>
+          <Button onClick={handleClear} className="buttonClearCart">
+            <Trash3 size={20} color=" black " />
+          </Button>
+        </Card.Footer>
+      </Card>
       {items?.length > 0 && (
-        <form>
+        <form className=" mt-4">
           <label>Nombre</label>
           <input
             type="text"
@@ -85,9 +139,13 @@ export const Cart = () => {
             name="email"
             onChange={handleChange}
           />
-          <button type="button" onClick={handleSubmit}>
+          <Button
+            type="button"
+            onClick={handleSubmit}
+            className="addButton m-2"
+          >
             Enviar
-          </button>
+          </Button>
         </form>
       )}
     </Container>

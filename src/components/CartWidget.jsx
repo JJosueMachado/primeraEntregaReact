@@ -9,7 +9,7 @@ export const CartWidget = () => {
   return (
     <Link to="/cart">
       <div id="cart-widget">
-        <Cart4 size={25} />
+        <Cart4 className="carticon" size={30} color="whitesmoke" />
         <span>{total}</span>
       </div>
     </Link>

@@ -5,8 +5,107 @@
 body {
   background-color: #fffbe7;
 }
-
+.carticon:hover {
+  border: 3px solid #04aa6d;
+}
 #cart-widget > span {
-  color: black;
+  color: whitesmoke;
   padding-left: 1rem;
+}
+.counterNav {
+  text-decoration: none;
+}
+#navTheme {
+  background-color: rgba(198, 2, 192, 0.871);
+  font-size: 22px;
+}
+
+.buttonItem {
+  margin-left: 55px;
+  color: rgba(198, 2, 192, 0.871);
+  font-size: 28px;
+  text-align: center;
+  background-color: white;
+  border: 3px solid #04aa6d;
+}
+.buttonItem:active {
+  background-color: none;
+}
+.buttonItem:hover {
+  background-color: rgba(198, 2, 192, 0.871);
+  border: 3px solid rgba(198, 2, 192, 0.871);
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  border-bottom: 5px solid #04aa6d;
+  color: rgb(248, 248, 248);
+  transition: all 0.85s;
+}
+
+.countButton {
+  color: rgba(198, 2, 192, 0.871);
+  text-decoration: none;
+  text-align: center;
+  background-color: #04aa6d;
+  border: 3px solid #04aa6d;
+}
+
+.countButton:hover {
+  background-color: rgba(198, 2, 192, 0.871);
+  border: 3px solid rgba(198, 2, 192, 0.871);
+}
+
+.addButton {
+  color: whitesmoke;
+  text-decoration: none;
+  text-align: center;
+  background-color: #04aa6d;
+  border: 3px solid #04aa6d;
+}
+
+.addButton:hover {
+  background-color: rgba(198, 2, 192, 0.871);
+  border: 3px solid rgba(198, 2, 192, 0.871);
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.mi-spinner {
+  color: #04aa6d;
+}
+
+ul.cartList {
+  list-style-type: none;
+}
+
+.buttonClearCart {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  background-color: white;
+  border: 1.5px solid #04aa6d;
+}
+.buttonClearCart:hover {
+  background-color: rgb(242, 53, 53);
+  border: 3px solid red;
+}
+
+.buttonRemoveItem {
+  color: rgba(198, 2, 192, 0.871);
+  font-size: 18px;
+  text-align: center;
+  background-color: white;
+  border: 2px solid #04aa6d;
+  border-radius: 12px;
+  padding: 2px;
+}
+
+.buttonRemoveItem:hover {
+  background-color: rgb(242, 53, 53);
+  color: whitesmoke;
+  border: 3px solid red;
 }
