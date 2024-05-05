@@ -10,8 +10,10 @@ import { CartContext } from "../contexts/CartContext";
 
 const initialValues = {
   name: "",
+  lastname: "",
   phone: "",
   email: "",
+  email2: "",
 };
 
 export const Cart = () => {
@@ -32,6 +34,53 @@ export const Cart = () => {
   };
 
   const handleSubmit = () => {
+    // Validación de campos vacios
+    for (let key in values) {
+      if (values[key] === "") {
+        swal({
+          title: "Error",
+          text: `El campo ${key} no puede estar vacío. Por favor, llénalo antes de continuar.`,
+          icon: "error",
+          button: "OK",
+        });
+        return;
+      }
+    }
+
+    // Validación de correo electrónico
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(values.email) || !emailRegex.test(values.email2)) {
+      swal({
+        title: "Error",
+        text: "Por favor, introduce un correo electrónico válido.",
+        icon: "error",
+        button: "OK",
+      });
+      return;
+    }
+
+    // Validación de coincidencia de correos electrónicos
+    if (values.email !== values.email2) {
+      swal({
+        title: "Error",
+        text: "Los correos electrónicos no coinciden. Por favor, corrija esto antes de continuar.",
+        icon: "error",
+        button: "OK",
+      });
+      return;
+    }
+
+    // Validación de solo números en el campo del teléfono
+    const phoneRegex = /^\d+$/;
+    if (!phoneRegex.test(values.phone)) {
+      swal({
+        title: "Error",
+        text: "Por favor, introduce un número de teléfono válido.",
+        icon: "error",
+        button: "OK",
+      });
+      return;
+    }
     const order = {
       buyer: values,
       items: items,
@@ -73,6 +122,7 @@ export const Cart = () => {
       }
     });
   };
+
   const handleRemove = (id) => removeItem(id);
   return (
     <Container className="mt-4">
@@ -91,7 +141,7 @@ export const Cart = () => {
                     </li>
                     <li>{i.title}</li>
                     <li>Cant: {i.quantity}</li>
-                    <li> {i.price} CPL</li>
+                    <li> precio {i.price} CPL</li>
                     <li onClick={() => handleRemove(i.id)}>X</li>
                     <li>
                       <button
@@ -107,7 +157,7 @@ export const Cart = () => {
             })}
           </Card.Text>
         </Card.Body>
-        <Card.Footer className="text-muted">
+        <Card.Footer>
           <div className=" mt-3 mb-4">
             <h2>Total: {total()} CLP</h2>
           </div>
@@ -125,7 +175,14 @@ export const Cart = () => {
             name="name"
             onChange={handleChange}
           />
-          <label>Phone</label>
+          <label>Apellido</label>
+          <input
+            type="text"
+            value={values.apellido}
+            name="lastname"
+            onChange={handleChange}
+          />
+          <label>Telefono </label>
           <input
             type="text"
             value={values.phone}
@@ -139,12 +196,20 @@ export const Cart = () => {
             name="email"
             onChange={handleChange}
           />
+          <label>Repite el Email</label>
+          <input
+            type="email"
+            value={values.email2}
+            name="email2"
+            onChange={handleChange}
+          />
+
           <Button
             type="button"
             onClick={handleSubmit}
             className="addButton m-2"
           >
-            Enviar
+            Terminar mi compra
           </Button>
         </form>
       )}
